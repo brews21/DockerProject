@@ -1,0 +1,15 @@
+Docker Swarm
+
+Summary
+In this chapter, we explored Docker Swarm. We took a look at how to
+install Docker Swarm and the Docker Swarm components, which make up
+Docker Swarm. We took a look at how to use Docker Swarm: joining,
+listing, and managing Swarm manager and worker nodes. We reviewed
+the service and stack commands and how to use them and spoke about
+the Swarm inbuilt ingress load balancer, overlay networks, and
+scheduler.
+
+In the next three chapters, we are going to be taking a look at some
+GUI applications that you can utilize to manage your Docker hosts,
+containers, and images. They are some very powerful tools and choosing
+one can be difficult so let's cover all three starting with Portainer.

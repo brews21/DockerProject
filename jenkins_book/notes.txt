@@ -1,0 +1,30 @@
+docker run -d -p 49001:8080 -v $PWD/jenkins_home:/var/jenkins_home --name jenkins jenkins/jenkins
+
+
+
+pipeline {
+ agent any
+ stages {
+  stage("Hello") {
+   steps {
+        echo 'Hello World'
+        }
+      }
+    }
+  }
+
+
+pipeline {
+  agent {
+    docker {
+      image 'openjdk:8-jdk-alpine'
+      }
+    }
+    stage("test")
+    {
+      steps
+      {
+
+      }
+    }
+}

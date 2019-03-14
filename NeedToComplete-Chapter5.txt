@@ -1,0 +1,31 @@
+chapter 5 -- DockerMachine
+
+-- launching a VM in VirtualBox
+-- launching a VM in AWS
+
+Summary
+In this chapter, we looked at Docker Machine. We first looked at how
+to use Docker Machine to create the Docker hosts locally on VirtualBox
+and reviewed the commands you can use to both interact with and manage
+your Docker Machine-launched Docker hosts. We then looked at how to use
+Docker Machine to deploy Docker hosts to your cloud environments, namely
+DigitalOcean and Amazon Web Services.
+
+While we had three Docker Machine-managed hosts online, we took a look
+at multihost container networking by installing and configuring Weave Net
+by Weave. Once Weave Net was installed, we launched our multi-container
+application, but this time, we launched the containers on different
+Docker hosts.
+
+Finally, we took a very quick look at how to launch two different
+container-optimized Linux operating systems, CoreOS and RancherOS,
+and the differences between them.
+
+I am sure you will agree that using Docker Machine made running these
+tasks, which typically have very different approaches, a very consistent
+experience, which in the long run will save a lot of time as well as
+explaining.
+
+In the next chapter, we will look at Docker Compose to launch
+multi-container applications. Docker Compose is a core component of the 
+Docker ecosystem that you will find yourself using almost daily.

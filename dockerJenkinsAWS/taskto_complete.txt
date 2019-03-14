@@ -1,0 +1,14 @@
+2. localhost:8080/hello. Use any language and framework you prefer:
+The easiest way to create a REST service is to use Python with the Flask framework, http:/​/​flask.​pocoo.​org/​.
+Note that a lot of web frameworks start the application on the localhost interface only by default.
+In order to publish a port, it's necessary to start it on all interfaces (app.run(host='0.0.0.0') in the case of a Flask framework).
+- Create a web service application
+- Create a Dockerfile to install dependencies and libraries
+- Build the image Run the container publishing the port Check if it's running correctly using the browser
+
+
+using my react project
+
+
+pipeline {
+agent any           stages {                stage("Hello") {                     steps {                          echo 'Hello World'                     }                }           }      }

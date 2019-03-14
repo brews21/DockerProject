@@ -1,0 +1,21 @@
+Rancher -- chapter 9
+
+Will read over but will not do as very similar to portainer
+
+first and main reason is;
+"The differences start with the installation process. Rancher does
+not currently support Docker for Mac or Docker for Windows. If you
+are using these platforms, you must use a local virtual machine
+running Ubuntu 16.04 or higher with a minimum of 1 GB of RAM."
+
+--- Notes ---
+rancher seam to be more configured for hosted VMs, connects to AWS,
+DigitalOcean and Azure.
+
+
+
+
+Docker Cloud -- chapter 10
+
+docker own management GUI, again run on host and connects to cloud
+provisioner. might wanna set it up for AWS

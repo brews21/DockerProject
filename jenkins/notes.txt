@@ -1,0 +1,5 @@
+docker run -d -p 49001:8080 -v $PWD/jenkins:/var/jenkins_home -t jenkins/jenkins
+
+
+docker run -d -p 8080:8080 -p 50000:50000 --name jenkins-master -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v /Users/michaelbrewster/Desktop/test/jenkins_home:/var/jenkins_home jenkins/jenkins:latest
+attempt 3 works by using the host machines docker

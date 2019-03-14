@@ -1,0 +1,8 @@
+version: "3.4"
+
+volumes:
+  db-data:
+    name: db-data
+
+  consul-data:
+    name: consul-data

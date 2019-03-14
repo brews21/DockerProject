@@ -1,0 +1,5 @@
+{{ key "test/value1" }}
+{{ key "test/value2" }}
+{{ env "environment" }}
+{{ printf "%s/value1" (env "environment") | key}}
+{{ printf "%s/value2" (env "environment") | key}}

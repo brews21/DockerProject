@@ -1,0 +1,57 @@
+docker run \
+  -u root \
+  --rm \
+  -d \
+  -p 8080:8080 \
+  -p 50000:50000 \
+  -v jenkins-data:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  jenkinsci/blueocean
+
+
+
+pipeline {
+    agent {
+        docker { image 'node:7-alpine' }
+    }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
+    }
+}
+
+
+pipeline {
+    agent { docker }
+
+    stages {
+        stage('Test') {
+          steps {
+            sleep 300 // 5 minutes
+            echo 'Hello World'
+          }
+        }
+
+    stage('Test2') {
+        steps {
+          sleep 300 // 5 minutes
+          echo 'Hello World'
+        }
+    }
+    }
+}
+
+
+
+pipeline {
+        agent any
+        stages {
+             stage("Hello") {
+} }
+     steps {
+          sleep 300 // 5 minutes
+          echo 'Hello World'
+} }

@@ -1,0 +1,15 @@
+FROM centosbase:latest
+
+USER root
+
+WORKDIR /tmp/scripts
+
+COPY . .
+
+RUN yum install -y tomcat
+
+COPY tomcat-users.xml /etc/tomcat/tomcat-users.xml
+
+RUN systemctl restart tomcat
+
+EXPOSE 8080

@@ -1,0 +1,56 @@
+docker run \
+  --volume=/var/run/docker.sock:/var/run/docker.sock \
+  --volume=/var/lib/docker/volumes/data/_data:/data \
+  --env=DRONE_GITHUB_SERVER=https://github.com \
+  --env=DRONE_GITHUB_CLIENT_ID=211619afcb5cbdab5570 \
+  --env=DRONE_GITHUB_CLIENT_SECRET=1915d8ed0dafd00552dc51968bf5d85c4c62c7a9 \
+  --env=DRONE_RUNNER_CAPACITY=2 \
+  --env=DRONE_SERVER_HOST=drone.mikeyb.com \
+  --env=DRONE_SERVER_PROTO=http \
+  --env=DRONE_TLS_AUTOCERT=true \
+  --publish=80:80 \
+  --publish=443:443 \
+  --restart=always \
+  --detach=true \
+  --name=drone \
+  drone/drone:1.0.0-rc.5
+
+##############################################
+##############################################
+
+docker run -d -p 8001:80 drone/drone-wall
+
+-- you configure the wall in the browser. When you first visit the wall it prompts you to add your drone server address and token
+
+##############################################
+##############################################
+
+
+docker run \
+  --volume=/var/run/docker.sock:/var/run/docker.sock \
+  --volume=/var/lib/drone:/data \
+  --env=DRONE_GITHUB_SERVER=https://github.com \
+  --env=DRONE_GITHUB_CLIENT_ID={% your-github-client-id %} \
+  --env=DRONE_GITHUB_CLIENT_SECRET={% your-github-client-secret %} \
+  --env=DRONE_AGENTS_ENABLED=true \
+  --env=DRONE_RPC_SECRET={% your-shared-secret %} \
+  --env=DRONE_SERVER_HOST={% your-drone-server-host %} \
+  --env=DRONE_SERVER_PROTO={% your-drone-server-protocol %} \
+  --env=DRONE_TLS_AUTOCERT=true \
+  --publish=80:80 \
+  --publish=443:443 \
+  --restart=always \
+  --detach=true \
+  --name=drone \
+  drone/drone:1.0.0-rc.6
+
+  docker run \
+  --volume=/var/run/docker.sock:/var/run/docker.sock \
+  --env=DRONE_RPC_SERVER=${DRONE_RPC_SERVER} \
+  --env=DRONE_RPC_SECRET=${DRONE_RPC_SECRET} \
+  --env=DRONE_RUNNER_CAPACITY=2 \
+  --env=DRONE_RUNNER_NAME=${HOSTNAME} \
+  --restart=always \
+  --detach=true \
+  --name=agent \
+  drone/agent:1.0.0-rc.6

@@ -1,0 +1,55 @@
+version: '2'
+
+services:
+  drone-server:
+    image: drone/drone:latest
+    #image: drone/drone:0.8.2
+    ports:
+      - 80:80
+      - 443:443
+      - 9000
+    volumes:
+      - drone:/data
+    restart: always
+    environment:
+      - DRONE_OPEN=false
+      - DRONE_ADMIN=mikeyb
+      - DRONE_GITHUB_SERVER=https://github.com
+      - DRONE_GITHUB_CLIENT_ID=d1c1fc20b1c8154e8d63
+      - DRONE_GITHUB_CLIENT_SECRET=37d729bedea92775bfd4e0e36b7fcaa7d986c18f
+      - DRONE_SERVER_HOST=http://drone.mikeyb.com
+      - DRONE_SERVER_PROTO=http
+      - DRONE_SECRET=drone_secret
+      - DRONE_LETS_ENCRYPT=true
+      - DRONE_RPC_SECRET=37d729bedea92775bfd4e0e36b7fcaa7d986c18f
+      - DRONE_AGENTS_ENABLED=true
+      - DRONE_TLS_AUTOCERT=true
+    networks:
+      - drone_network
+
+  drone-agent:
+    image: drone/agent:latest
+    #image: drone/agent:0.8.2
+    command: agent
+    restart: always
+    depends_on:
+      - drone-server
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_RUNNER_CAPACITY=2
+      - DRONE_SERVER=drone-server:9000
+      - DRONE_SECRET=drone_secret
+      - DRONE_RPC_SERVER=http://drone.mikeyb.com
+      - DRONE_RPC_SECRET=37d729bedea92775bfd4e0e36b7fcaa7d986c18f
+      - DRONE_RUNNER_NAME=drone_agent
+    networks:
+      - drone_network
+    ports:
+      - 9000
+
+volumes:
+  drone:
+
+networks:
+  drone_network:

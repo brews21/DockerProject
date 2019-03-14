@@ -1,0 +1,69 @@
+version: "3.6"
+
+services:
+  base:
+    container_name: base
+    build:
+      context: ./base
+      args:
+        - env=${ENV_VAL}
+        - app=ubuntu_base
+        - dev=${dev}
+        - consul_host=${CONSUL_HOST}
+    image: ubuntubase:${dev}
+    networks:
+      - consul_network
+
+  nodebase:
+    container_name: nodebase
+    build:
+      context: ./nodebase
+      args:
+        - env=${ENV_VAL}
+        - app=node_base
+        - dev=${dev}
+    image: nodebase:${dev}
+    depends_on:
+      - base
+    networks:
+      - consul_network
+
+  webapp:
+    container_name: webapp
+    build:
+      context: ./node
+      args:
+        - env=${ENV_VAL}
+        - app=webapp
+        - dev=${dev}
+    image: webapp:${dev}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - nodebase
+    networks:
+      - consul_network
+      - db_network
+
+  postgres:
+    container_name: postgres
+    build: ./postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    networks:
+      - consul_network
+      - db_network
+
+volumes:
+  db-data:
+    external: true
+
+networks:
+  consul_network:
+    name: consul_network
+    external: true
+
+  db_network:
+    name: db_network
