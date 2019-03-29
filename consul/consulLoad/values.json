@@ -1,7 +1,9 @@
 {
   "test" : {
     "foo": "bar",
-    "hello": "world"
+    "hello": "world",
+    "value1": "copella",
+    "value2": "Cloudy Apple"
   },
   "test2" : {
     "car": "true",
@@ -18,5 +20,9 @@
       "chips": "true",
       "drink": "coke"
     }
+  },
+  "train": {
+    "value1": "Choo Choo",
+    "value2": "Southern"
   }
 }

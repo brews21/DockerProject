@@ -1,8 +1,8 @@
 version: '3.5'
 
 services:
-  vault:
-    container_name: vault.server
+  vault1:
+    container_name: vault1
     image: vault
     ports:
       - "8200:8200"
@@ -16,7 +16,8 @@ services:
     cap_add:
       - IPC_LOCK
     environment:
-    - VAULT_LOCAL_CONFIG={"backend":{"consul":{"address":"0.0.0.0:9500","advertise_addr":"http://0.0.0.0", "path":"vault/"}},"listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}}
+    - VAULT_DEV_ROOT_TOKEN_ID=myroot
+    - VAULT_DEV_LISTEN_ADDRESS=http://vault1:8200
     command: server
 
   bash_test:
@@ -25,8 +26,8 @@ services:
       context: ./bashtest
     image: bash.test
     environment:
-      - CONSUL_HTTP_ADDR=0.0.0.0:8500
-      - VAULT_ADDR=http://0.0.0.0:8200
+      - CONSUL_HTTP_ADDR=consul1:8500
+      - VAULT_ADDR=http://vault1:8200
     volumes:
       - ./etc/bash.test/data:/mnt/data
     networks:
