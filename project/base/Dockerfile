@@ -25,3 +25,6 @@ RUN apt-get update -y && \
 	apt install -y vim && \
 	apt install curl -y && \
 	installs/consul-template.sh
+
+
+EXPOSE 8500 8200

@@ -13,6 +13,7 @@ services:
     image: ubuntubase:${dev}
     networks:
       - consul_network
+      - vault_network
 
   nodebase:
     container_name: nodebase
@@ -63,6 +64,9 @@ volumes:
 networks:
   consul_network:
     name: consul_network
+    external: true
+  vault_network:
+    name: vault_network
     external: true
 
   db_network:

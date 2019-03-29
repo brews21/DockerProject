@@ -1,0 +1,74 @@
+[
+    {
+        "LockIndex": 0,
+        "Key": "test/foo",
+        "Flags": 0,
+        "Value": "YmFy",
+        "CreateIndex": 6412,
+        "ModifyIndex": 6412
+    },
+    {
+        "LockIndex": 0,
+        "Key": "test/hello",
+        "Flags": 0,
+        "Value": "d29ybGQ=",
+        "CreateIndex": 6413,
+        "ModifyIndex": 6413
+    },
+    {
+        "LockIndex": 0,
+        "Key": "test2/bike",
+        "Flags": 0,
+        "Value": "Ym9hdA==",
+        "CreateIndex": 6415,
+        "ModifyIndex": 6415
+    },
+    {
+        "LockIndex": 0,
+        "Key": "test2/car",
+        "Flags": 0,
+        "Value": "dmFu",
+        "CreateIndex": 6414,
+        "ModifyIndex": 6414
+    },
+    {
+        "LockIndex": 0,
+        "Key": "test2/food/burger/beef",
+        "Flags": 0,
+        "Value": "dHJ1ZQ==",
+        "CreateIndex": 6417,
+        "ModifyIndex": 6417
+    },
+    {
+        "LockIndex": 0,
+        "Key": "test2/food/burger/cheese",
+        "Flags": 0,
+        "Value": "dHJ1ZQ==",
+        "CreateIndex": 6416,
+        "ModifyIndex": 6416
+    },
+    {
+        "LockIndex": 0,
+        "Key": "test2/food/burger/sauce",
+        "Flags": 0,
+        "Value": "bWF5bw==",
+        "CreateIndex": 6418,
+        "ModifyIndex": 6418
+    },
+    {
+        "LockIndex": 0,
+        "Key": "test2/food/chips",
+        "Flags": 0,
+        "Value": "dHJ1ZQ==",
+        "CreateIndex": 6419,
+        "ModifyIndex": 6419
+    },
+    {
+        "LockIndex": 0,
+        "Key": "test2/food/drink",
+        "Flags": 0,
+        "Value": "Y29rZQ==",
+        "CreateIndex": 6420,
+        "ModifyIndex": 6420
+    }
+]

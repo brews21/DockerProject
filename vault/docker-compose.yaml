@@ -1,0 +1,45 @@
+version: '3.5'
+
+services:
+  vault:
+    container_name: vault.server
+    image: vault
+    ports:
+      - "8200:8200"
+    networks:
+      - consul_network
+      - vault_network
+    volumes:
+      - ./etc/vault.server/config:/mnt/vault/config
+      - ./etc/vault.server/data:/mnt/vault/data
+      - ./etc/vault.server/logs:/mnt/vault/logs
+    cap_add:
+      - IPC_LOCK
+    environment:
+    - VAULT_LOCAL_CONFIG={"backend":{"consul":{"address":"0.0.0.0:9500","advertise_addr":"http://0.0.0.0", "path":"vault/"}},"listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}}
+    command: server
+
+  bash_test:
+    container_name: bash.test
+    build:
+      context: ./bashtest
+    image: bash.test
+    environment:
+      - CONSUL_HTTP_ADDR=0.0.0.0:8500
+      - VAULT_ADDR=http://0.0.0.0:8200
+    volumes:
+      - ./etc/bash.test/data:/mnt/data
+    networks:
+      - consul_network
+      - vault_network
+    command: tail -f /dev/null
+
+
+
+networks:
+  consul_network:
+    name: consul_network
+    external: true
+
+  vault_network:
+    name: vault_network

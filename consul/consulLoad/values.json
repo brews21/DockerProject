@@ -1,0 +1,22 @@
+{
+  "test" : {
+    "foo": "bar",
+    "hello": "world"
+  },
+  "test2" : {
+    "car": "true",
+    "bike": "true",
+    "food": {
+      "burger": {
+        "cheese": "true",
+        "beef": "true",
+        "sauce": {
+          "mayo": "true",
+          "mustard": "false"
+        }
+      } ,
+      "chips": "true",
+      "drink": "coke"
+    }
+  }
+}

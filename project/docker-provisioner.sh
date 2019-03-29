@@ -2,6 +2,6 @@
 #
 #
 
-source .env
+#source .env
 
 docker-compose build
