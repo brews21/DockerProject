@@ -2,4 +2,6 @@ docker run -d -p 8200:8200 --cap-add=IPC_LOCK -e 'VAULT_DEV_ROOT_TOKEN_ID=myroot
 
 docker run -d -p 8200:8200 --cap-add=IPC_LOCK -e 'VAULT_DEV_ROOT_TOKEN_ID=myroot' -e 'VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200' --network consul_network --name vault1 vault server
 
+docker run -d -p 8200:8200 --cap-add=IPC_LOCK -e 'VAULT_DEV_ROOT_TOKEN_ID=myroot' -e 'VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200' --network consul_network --name vault1 vault
+
 curl -H "X-Vault-Token: $VAULT_TOKEN" -X GET "$VAULT_ADDR/v1/secret/data/test"
