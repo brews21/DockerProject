@@ -9,16 +9,11 @@ services:
     networks:
       - consul_network
       - vault_network
-    volumes:
-      - ./etc/vault.server/config:/mnt/vault/config
-      - ./etc/vault.server/data:/mnt/vault/data
-      - ./etc/vault.server/logs:/mnt/vault/logs
     cap_add:
       - IPC_LOCK
     environment:
     - VAULT_DEV_ROOT_TOKEN_ID=myroot
-    - VAULT_DEV_LISTEN_ADDRESS=http://vault1:8200
-    command: server
+    - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
 
   bash_test:
     container_name: bash.test
@@ -28,14 +23,10 @@ services:
     environment:
       - CONSUL_HTTP_ADDR=consul1:8500
       - VAULT_ADDR=http://vault1:8200
-    volumes:
-      - ./etc/bash.test/data:/mnt/data
     networks:
       - consul_network
       - vault_network
     command: tail -f /dev/null
-
-
 
 networks:
   consul_network:

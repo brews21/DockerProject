@@ -1,0 +1,27 @@
+version: "3.6"
+
+services:
+  django:
+    container_name: django
+    build:
+      context: ./image
+      args:
+        - env=${ENV_VAL}
+        - app=ubuntu_base
+        - dev=${dev}
+    image: django:${dev}
+    networks:
+      - consul_network
+      - vault_network
+    ports:
+      - "8000:8000"
+    #command: "/tmp/scripts/init/init.sh"
+    command: "tail -f > /dev/null"
+
+networks:
+  consul_network:
+    name: consul_network
+    external: true
+  vault_network:
+    name: vault_network
+    external: true

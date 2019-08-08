@@ -1,0 +1,26 @@
+version: "3.6"
+
+services:
+  base:
+    container_name: base
+    build:
+      context: ./base
+      args:
+        - env=${ENV_VAL}
+        - app=ubuntu_base
+        - dev=${dev}
+        - consul_host=${CONSUL_HOST}
+        - vault_addr=${VAULT_ADDR}
+    image: ubuntubase:${dev}
+    networks:
+      - consul_network
+      - vault_network
+    command: /tmp/scripts/init/init.sh
+
+networks:
+  consul_network:
+    name: consul_network
+    external: true
+  vault_network:
+    name: vault_network
+    external: true
