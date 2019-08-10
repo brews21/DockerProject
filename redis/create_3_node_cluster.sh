@@ -35,23 +35,26 @@ docker network connect network2 rp3
 
 echo “”
 echo “Waiting for the servers to start ...”
-#echo “Sleeping for 60sec ...”
-#sleep 60
+echo “Sleeping for 3min ...”
+sleep 180
 
-#echo “”
-#echo “Creating cluster and joining slaves ...”
-#docker exec -it rp1 /opt/redislabs/bin/rladmin cluster create name cluster1.local username r@r.com password test
-#docker exec -it rp2 /opt/redislabs/bin/rladmin cluster join nodes 172.18.0.2 username r@r.com password test
-#docker exec -it rp3 /opt/redislabs/bin/rladmin cluster join nodes 172.18.0.2 username r@r.com password test
-#
-# sleep 30
-# echo “”
-# echo “Creating a CRDB”
-# docker exec -it rp1 /opt/redislabs/bin/crdb-cli crdb create --name mycrdb --memory-size 512mb --replication false --shards-count 2 --instance fqdn=cluster1.local,username=r@r.com,password=test 
+echo “”
+echo “Creating cluster and joining slaves ...”
+docker exec -it rp1 /opt/redislabs/bin/rladmin cluster create name cluster1.local username r@r.com password test
+docker exec -it rp2 /opt/redislabs/bin/rladmin cluster join nodes 172.18.0.2 username r@r.com password test
+docker exec -it rp3 /opt/redislabs/bin/rladmin cluster join nodes 172.18.0.2 username r@r.com password test
 
-#–instance fqdn=cluster2.local,username=r@r.com,password=test –instance fqdn=cluster3.local,username=r@r.com,password=test
+echo “Waiting for the Cluster to be ready ...”
+echo “Sleeping for 60sec ...”
+sleep 60
+echo “”
+echo “Creating a CRDB”
+docker exec -it rp1 /opt/redislabs/bin/crdb-cli crdb create --name mycrdb --memory-size 512mb --port 12000 --replication true --shards-count 2 --instance fqdn=cluster1.local,username=r@r.com,password=test 
 
-#docker exec -it rp1 /opt/redislabs/bin/rladmin bind db mycrdb endpoint 1:1 policy all-nodes
+#-instance fqdn=cluster2.local,username=r@r.com,password=test --instance fqdn=cluster3.local,username=r@r.com,password=test
+
+echo “Setting policy to all-nodes ...”
+docker exec -it rp1 /opt/redislabs/bin/rladmin bind db mycrdb endpoint 1:1 policy all-nodes
 
 echo ""
 echo "Completed the Script"
