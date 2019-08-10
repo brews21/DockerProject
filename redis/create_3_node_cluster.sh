@@ -43,3 +43,13 @@ echo “Creating cluster and joining slaves ...”
 docker exec -it rp1 /opt/redislabs/bin/rladmin cluster create name cluster1.local username r@r.com password test
 docker exec -it rp2 /opt/redislabs/bin/rladmin cluster join nodes 172.18.0.2 username r@r.com password test
 docker exec -it rp3 /opt/redislabs/bin/rladmin cluster join nodes 172.18.0.2 username r@r.com password test
+#
+# sleep 30
+# echo “”
+# echo “Creating a CRDB”
+# docker exec -it rp1 /opt/redislabs/bin/crdb-cli crdb create –name mycrdb –memory-size 512mb –port 12000 –replication false –shards-count 1 –instance fqdn=cluster1.local,username=r@r.com,password=test –instance fqdn=cluster2.local,username=r@r.com,password=test –instance fqdn=cluster3.local,username=r@r.com,password=test
+
+
+
+echo ""
+echo "Completed the Script"
