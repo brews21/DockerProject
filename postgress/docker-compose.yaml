@@ -1,14 +1,20 @@
-version: "3"
+version: "3.5"
 
 services:
   db:
     build: ./image
-    container_name: db
+    container_name: postgres
     ports:
       - "5432:5432"
     volumes:
       - "db-data:/var/lib/postgresql/data"
+    networks:
+      - db_network
 
 volumes:
   db-data:
-    external: true
+    name: db-data
+
+networks:
+  db_network:
+    name: db_network

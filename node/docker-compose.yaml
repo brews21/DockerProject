@@ -1,0 +1,45 @@
+version: "3.6"
+
+services:
+  nodebase:
+    container_name: nodebase
+    build:
+      context: ./nodebase
+      args:
+        - env=${ENV_VAL}
+        - app=node_base
+        - dev=${dev}
+    image: nodebase:${dev}
+    networks:
+      - consul_network
+      - vault_network
+
+  webapp:
+    container_name: webapp
+    build:
+      context: ./node
+      args:
+        - env=${ENV_VAL}
+        - app=webapp
+        - dev=${dev}
+    image: webapp:${dev}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - nodebase
+    networks:
+      - consul_network
+      - vault_network
+      - db_network
+
+volumes:
+  db-data:
+    external: true
+
+networks:
+  consul_network:
+    name: consul_network
+    external: true
+  vault_network:
+    name: vault_network
+    external: true

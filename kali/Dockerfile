@@ -17,7 +17,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y && apt-get i
  sqlmap \
  sslscan \
  wordlists \
- python-pip
+ python-pip \
+ kali-linux-top10
 
 # Create known_hosts for git cloning
 WORKDIR /root/.ssh/

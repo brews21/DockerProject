@@ -1,1 +1,7 @@
 docker run --privileged  -ti -e container=docker  -v /sys/fs/cgroup:/sys/fs/cgroup  centos7-systemd /usr/sbin/init
+
+
+docker run -it -v /Users/michaelbrewster/Desktop/test/centosRepos:/tmp centos
+
+
+yum install --downloadonly --downloaddir=/tmp firefox

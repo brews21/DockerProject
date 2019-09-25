@@ -1,0 +1,32 @@
+{
+  "test" : {
+    "foo": "bar",
+    "hello": "world",
+    "value1": "copella",
+    "value2": "Cloudy Apple"
+  },
+  "test2" : {
+    "car": "true",
+    "bike": "true",
+    "food": {
+      "burger": {
+        "cheese": "true",
+        "beef": "true",
+        "sauce": {
+          "mayo": "true",
+          "mustard": "false"
+        }
+      } ,
+      "chips": "true",
+      "drink": "coke"
+    }
+  },
+  "train": {
+    "value1": "Choo Choo",
+    "value2": "Southern"
+  },
+  "base": {
+    "value1": "ubuntu base build",
+    "value2": "base build"
+  }
+}
