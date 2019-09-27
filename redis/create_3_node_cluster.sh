@@ -3,14 +3,10 @@
 #
 
 echo “Deleting and Cleaning any resources ...”
-docker container kill rp1 2>/dev/null
-docker container kill rp2 2>/dev/null
-docker container kill rp3 2>/dev/null
+docker container kill rp1 rp2 rp3 2>/dev/null
 docker container prune -f
 
-docker network rm network1 2>/dev/null
-docker network rm network2 2>/dev/null
-docker network rm network3 2>/dev/null
+docker network rm network1 network2 network3 2>/dev/null
 
 echo “Creating new subnets ...”
 docker network create network1 --subnet=172.18.0.0/16 --gateway=172.18.0.1
@@ -35,8 +31,8 @@ docker network connect network2 rp3
 
 echo “”
 echo “Waiting for the servers to start ...”
-echo “Sleeping for 3min ...”
-sleep 180
+echo “Sleeping for 90secs ...”
+sleep 90
 
 echo “”
 echo “Creating cluster and joining slaves ...”
@@ -49,7 +45,7 @@ echo “Sleeping for 60sec ...”
 sleep 60
 echo “”
 echo “Creating a CRDB”
-docker exec -it rp1 /opt/redislabs/bin/crdb-cli crdb create --name mycrdb --memory-size 512mb --port 12000 --replication true --shards-count 2 --instance fqdn=cluster1.local,username=r@r.com,password=test 
+docker exec -it rp1 /opt/redislabs/bin/crdb-cli crdb create --name mycrdb --memory-size 512mb --port 12000 --replication true --shards-count 2 --instance fqdn=cluster1.local,username=r@r.com,password=test
 
 #-instance fqdn=cluster2.local,username=r@r.com,password=test --instance fqdn=cluster3.local,username=r@r.com,password=test
 

@@ -13,4 +13,6 @@ COPY executors.groovy /usr/share/jenkins/ref/init.groovy.d/executors.groovy
 
 COPY swarm-client-3.9.jar /tmp
 
-RUN java -jar /tmp/swarm-client-3.9.jar -disableSslVerification -master http://192.168.33.52:49001 -username jenkins -password jenkins -name jenkinsswarm-slave-1
+EXPOSE 49001
+
+RUN java -jar /tmp/swarm-client-3.9.jar -disableSslVerification -master http://172.20.0.2:49001 -username jenkins -password jenkins -name jenkinsswarm-slave-1

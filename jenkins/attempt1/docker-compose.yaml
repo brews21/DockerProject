@@ -1,0 +1,27 @@
+version: "3.6"
+
+services:
+  jenkinsmaster:
+    container_name: jenkinsmaster
+    build:
+      context: ./master
+    image: myjenkinsmaster
+    ports:
+      - 8080:8080
+      - 49001:49001
+    networks:
+      - jenkins_network
+  jenkinsslave:
+    container_name: jenkinsslave
+    build:
+      context: ./slave
+    image: myjenkinsslave
+    ports:
+      - 49001:49001
+    networks:
+      - jenkins_network
+
+
+networks:
+  jenkins_network:
+    name: jenkins_network

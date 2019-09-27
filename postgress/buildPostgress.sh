@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x
 docker-compose up -d --build
 
 echo "Sleeping while database comes up"

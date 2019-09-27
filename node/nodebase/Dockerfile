@@ -1,6 +1,6 @@
 ### Dockerfile
 #
-#   See https://github.com/russmckendrick/docker
+#   
 
 ARG dev
 
