@@ -1,22 +1,20 @@
 version: "3.5"
 
 services:
-  db:
+  djangodb:
     build: ./image
     container_name: ${APP_NAME}
-    args:
-      - app_name=${APP_NAME}
     ports:
       - "5432:5432"
     volumes:
-      - "db-data:/var/lib/postgresql/data"
+      - "djangodb-data:/var/lib/postgresql/data"
     networks:
-      - db_network
+      - djangodb-network
 
 volumes:
-  ${APP_NAME}-data:
-    name: ${APP_NAME}-data
+  djangodb-data:
+    name: djangodb-data
 
 networks:
-  ${APP_NAME}-network:
-    name: ${APP_NAME}-network
+  djangodb-network:
+    name: djangodb-network

@@ -4,4 +4,4 @@
 
 set -x
 
-java -jar jenkins.2.190.war
+java -jar -Dhudson.model.DirectoryBrowserSupport.CSP="" jenkins.2.190.war
